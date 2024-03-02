@@ -1,0 +1,43 @@
+<form [formGroup]="equationsFrom" novalidate (ngSubmit)="submit()">
+
+<div class="equations">
+<div>
+  <mat-radio-group formControlName="func" aria-label="выберите уравнение" (change)="onRadioChange($event)">
+    <mat-radio-button value="1">-2,7x<sup>3</sup>-1,48x<sup>2</sup>+19,23x+6,35</mat-radio-button>
+    <br>
+    <mat-radio-button value="2">x+1</mat-radio-button>
+  </mat-radio-group>
+</div>
+<div>
+  <mat-radio-group formControlName="method" aria-label="выберите метод решения уравнения" >
+    <mat-radio-button value="1">Метод половинного деления</mat-radio-button>
+    <br>
+    <mat-radio-button value="2">Метод Ньютона</mat-radio-button>
+    <br>
+    <mat-radio-button value="3">Метод простой итерации</mat-radio-button>
+  </mat-radio-group>
+</div>
+</div>
+<div>
+  <div>
+    <p-inputGroupAddon>
+      a
+    </p-inputGroupAddon>
+    <input name="a" type="text" pInputText formControlName="a"  />
+    <div *ngIf="equationsFrom.controls['a'].invalid && equationsFrom.controls['a'].touched">
+      <div class="alert">a is required</div>
+    </div>
+  </div>
+
+  <div>
+    <p-inputGroupAddon>
+      b
+    </p-inputGroupAddon>
+    <input type="text" pInputText name="b" formControlName="b"  />
+    <div *ngIf="equationsFrom.controls['b'].invalid && equationsFrom.controls['b'].touched">
+      <div class="alert">b is required</div>
+    </div>
+  </div>
+  <p-button type="submit" [disabled]="equationsFrom.invalid">Send</p-button>
+</div>
+</form>

@@ -1,0 +1,7 @@
+:host{
+  display: flex;
+}
+.equations{
+  display: flex;
+  flex-direction: row;
+  border: 3px solid deeppink;}
