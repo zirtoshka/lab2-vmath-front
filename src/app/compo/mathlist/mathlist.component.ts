@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
@@ -9,6 +9,8 @@ import {InputGroupAddonModule} from "primeng/inputgroupaddon";
 import {InputNumberModule} from "primeng/inputnumber";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
+import {AppService} from "../../app.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-mathlist',
@@ -25,7 +27,8 @@ import {InputTextModule} from "primeng/inputtext";
     InputGroupAddonModule,
     InputNumberModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    NgIf
   ],
   templateUrl: './mathlist.component.html',
   styleUrl: './mathlist.component.css'
@@ -33,6 +36,8 @@ import {InputTextModule} from "primeng/inputtext";
 export class MathlistComponent {
   equationsFrom: FormGroup;
   @Output() choseEvent = new EventEmitter<number>();
+  private appService = inject(AppService);
+
 
   constructor(private formBuilder: FormBuilder) {
     this.equationsFrom = formBuilder.group({
@@ -40,8 +45,8 @@ export class MathlistComponent {
         Validators.pattern('-?\\d+([\\.,]\\d+)?')]],
       "b": ["0", [Validators.required,
         Validators.pattern('-?\\d+([\\.,]\\d+)?')]], //'\\d+(\\.|,\\d+)?'
-      "func":["", [Validators.required]],
-      "method":["", [Validators.required]]
+      "func": ["", [Validators.required]],
+      "method": ["", [Validators.required]]
     });
   }
 
@@ -57,11 +62,16 @@ export class MathlistComponent {
     }
 
   }
-  submit(){
+
+  submit() {
+    this.appService.equationMake(this.equationsFrom.value.func, this.equationsFrom.value.method,
+      this.equationsFrom.value.a, this.equationsFrom.value.b).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
     console.log("to do request");
   }
-
-
 
 
 }
