@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import {GraphComponent} from "./compo/graph/graph.component";
 import {HeaderComponent} from "./compo/header/header.component";
 import {EquationComponent} from "./compo/equation/equation.component";
+import {CamComponent} from "./compo/cam/cam.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, GraphComponent, HeaderComponent, EquationComponent],
+  imports: [RouterOutlet, GraphComponent, HeaderComponent, EquationComponent, CamComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

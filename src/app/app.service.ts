@@ -1,5 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Response} from "./response";
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,11 @@ export class AppService {
       secondBoundaryOfInterval:secondBoundaryOfInterval,
       inaccuracy: inaccuracy
     };
+    console.log(formData);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
-      .post<String>(`${this.baseUrl}`, JSON.stringify(formData), { headers });
+      .post<Response>(`${this.baseUrl}`, JSON.stringify(formData), { headers });
   }
 
 }

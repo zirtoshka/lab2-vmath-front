@@ -21,6 +21,7 @@
     "@angular/router": "^17.2.0",
     "chart.js": "^4.4.2",
     "jsxgraph": "^1.7.0",
+    "ngx-webcam": "^0.4.1",
     "primeng": "^17.3.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

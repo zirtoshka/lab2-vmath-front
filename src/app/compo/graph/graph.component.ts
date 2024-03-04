@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import * as JXG from 'jsxgraph';
-import {GeometryElement, Math} from "jsxgraph";
+import {GeometryElement} from "jsxgraph";
 import {color} from "chart.js/helpers";
 
 
@@ -34,7 +34,15 @@ export class GraphComponent {
 
   draw2fun() {
     this.lines.push(this.board.create('functiongraph', [function (x: number) {
-      return x + 1;
+      return x * x * x - x + 4;
+    }, -10, 10], {
+      strokeColor: '#002aff' // Красный цвет для линии графика
+    }));
+  }
+
+  draw3fun() {
+    this.lines.push(this.board.create('functiongraph', [function (x: number) {
+      return 5*Math.log10(x+2)-3;
     }, -10, 10], {
       strokeColor: '#002aff' // Красный цвет для линии графика
     }));
@@ -55,6 +63,8 @@ export class GraphComponent {
 
     } else if (event == 2) {
       this.draw2fun();
+    } else if (event == 3) {
+      this.draw3fun();
     }
   }
 

@@ -1,0 +1,7 @@
+
+.container{
+  transform: rotateY(180deg);
+  /*z-index: 100000;*/
+  /*-webkit-transform: rotateY(180deg); !* Для Safari и Chrome *!*/
+  /*-moz-transform: rotateY(180deg); !* Для Firefox *!*/
+}

@@ -58,25 +58,28 @@ export class EquationComponent {
   onRadioChange(event: any) {
     if (event.value === '1') {
       this.choseEvent.emit(1)
-      // Выполните вашу функцию здесь
-      console.log('Кнопка 1 выбрана');
     } else if (event.value === '2') {
       this.choseEvent.emit(2)
+    }else if(event.value=='3'){
+      this.choseEvent.emit(3)
 
-      console.log("2")
     }
 
   }
 
   submit() {
     this.appService.equationMake(this.equationsFrom.value.func, this.equationsFrom.value.method,
-      this.equationsFrom.value.a, this.equationsFrom.value.b, this.equationsFrom.value.inaccuracy).subscribe({
+      this.equationsFrom.value.firstBoundaryOfInterval, this.equationsFrom.value.secondBoundaryOfInterval, this.equationsFrom.value.inaccuracy).subscribe({
       next: (response) => {
+        alert(response.uknownX+ "   "+ response.fun);
         console.log(response);
       },
       error: (error) => {
-        console.error(error);
-      }
+        if (error.status === 400) {
+          alert(error.error);
+        } else {
+          console.error(error);
+        }      }
     });
     console.log("to do request");
   }

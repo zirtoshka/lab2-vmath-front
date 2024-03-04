@@ -1,0 +1,10 @@
+.contic-app{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+.math{
+  display: flex;
+  flex-direction: column;
+
+}
