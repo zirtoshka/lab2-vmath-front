@@ -11,13 +11,14 @@ export class AppService {
   constructor(private httpClient: HttpClient) {}
 
 
-  equationMake(func:number, method:number, a:number, b:number){
+  equationMake(func:number, method:number, firstBoundaryOfInterval:number, secondBoundaryOfInterval:number, inaccuracy:number){
     console.log("appservice")
     const formData = {
       func: func,
       method: method,
-      a: a,
-      b:b
+      firstBoundaryOfInterval: firstBoundaryOfInterval,
+      secondBoundaryOfInterval:secondBoundaryOfInterval,
+      inaccuracy: inaccuracy
     };
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 

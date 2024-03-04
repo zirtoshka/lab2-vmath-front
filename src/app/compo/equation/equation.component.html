@@ -21,20 +21,29 @@
 <div>
   <div>
     <p-inputGroupAddon>
-      a
+      начало интервала
     </p-inputGroupAddon>
-    <input name="a" type="text" pInputText formControlName="a"  />
-    <div *ngIf="equationsFrom.controls['a'].invalid && equationsFrom.controls['a'].touched">
-      <div class="alert">a is required</div>
+    <input name="firstBoundaryOfInterval" type="text" pInputText formControlName="firstBoundaryOfInterval"  />
+    <div *ngIf="equationsFrom.controls['firstBoundaryOfInterval'].invalid && equationsFrom.controls['firstBoundaryOfInterval'].touched">
+      <div class="alert">начало интервала is required</div>
     </div>
   </div>
   <div>
     <p-inputGroupAddon>
-      b
+      конец интервала
     </p-inputGroupAddon>
-    <input type="text" pInputText name="b" formControlName="b"  />
-    <div *ngIf="equationsFrom.controls['b'].invalid && equationsFrom.controls['b'].touched">
-      <div class="alert">b is required</div>
+    <input type="text" pInputText name="secondBoundaryOfInterval" formControlName="secondBoundaryOfInterval"  />
+    <div *ngIf="equationsFrom.controls['secondBoundaryOfInterval'].invalid && equationsFrom.controls['secondBoundaryOfInterval'].touched">
+      <div class="alert">конец интервала is required</div>
+    </div>
+  </div>
+  <div>
+    <p-inputGroupAddon>
+      погрешность
+    </p-inputGroupAddon>
+    <input type="text" pInputText name="inaccuracy" formControlName="inaccuracy"  />
+    <div *ngIf="equationsFrom.controls['inaccuracy'].invalid && equationsFrom.controls['inaccuracy'].touched">
+      <div class="alert">inaccuracy is required and <=0.1</div>
     </div>
   </div>
   <p-button type="submit" [disabled]="equationsFrom.invalid">Send</p-button>
