@@ -55,15 +55,8 @@ export class EquationComponent {
     });
   }
 
-  onRadioChange(event: any) {
-    if (event.value === '1') {
-      this.choseEvent.emit(1)
-    } else if (event.value === '2') {
-      this.choseEvent.emit(2)
-    }else if(event.value=='3'){
-      this.choseEvent.emit(3)
-
-    }
+  onRadioChange(event: number) {
+    this.choseEvent.emit(event)
 
   }
 
@@ -71,7 +64,7 @@ export class EquationComponent {
     this.appService.equationMake(this.equationsFrom.value.func, this.equationsFrom.value.method,
       this.equationsFrom.value.firstBoundaryOfInterval, this.equationsFrom.value.secondBoundaryOfInterval, this.equationsFrom.value.inaccuracy).subscribe({
       next: (response) => {
-        alert(response.uknownX+ "   "+ response.fun);
+        alert("корень = "+ response.uknownX+ "   значение функции = "+ response.fun);
         console.log(response);
       },
       error: (error) => {
@@ -81,7 +74,6 @@ export class EquationComponent {
           console.error(error);
         }      }
     });
-    console.log("to do request");
   }
 
 

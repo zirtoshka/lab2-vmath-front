@@ -4,11 +4,12 @@ import {GraphComponent} from "./compo/graph/graph.component";
 import {HeaderComponent} from "./compo/header/header.component";
 import {EquationComponent} from "./compo/equation/equation.component";
 import {CamComponent} from "./compo/cam/cam.component";
+import {SystemComponent} from "./compo/system/system.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, GraphComponent, HeaderComponent, EquationComponent, CamComponent],
+  imports: [RouterOutlet, GraphComponent, HeaderComponent, EquationComponent, CamComponent, SystemComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,8 +1,14 @@
 <app-header/>
-<div class="contic-app">
+<!--<div class="contic-app">-->
 <!--<app-cam></app-cam>-->
 <div class="math">
-<app-graph #graphComponent></app-graph>
-<app-equation #equationComponent (choseEvent)="graphComponent.drawline($event)"></app-equation>
+<!--  <div class="graph">-->
+<!--  </div>-->
+<!--  <div class="forms">-->
+    <app-equation #equationComponent (choseEvent)="graphComponent.drawline($event)"></app-equation>
+  <app-graph #graphComponent></app-graph>
+
+  <app-system (choseEvent)="graphComponent.drawline($event)"></app-system>
+<!--  </div>-->
 </div>
-</div>
+<!--</div>-->

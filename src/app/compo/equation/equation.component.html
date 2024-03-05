@@ -2,12 +2,12 @@
 
 <div class="equations">
 <div>
-  <mat-radio-group formControlName="func" aria-label="выберите уравнение" (change)="onRadioChange($event)">
-    <mat-radio-button value="1">-2,7x<sup>3</sup>-1,48x<sup>2</sup>+19,23x+6,35</mat-radio-button>
+  <mat-radio-group formControlName="func" aria-label="выберите уравнение" >
+    <mat-radio-button value="1" (click)="onRadioChange(1)">-2,7x<sup>3</sup>-1,48x<sup>2</sup>+19,23x+6,35</mat-radio-button>
     <br>
-    <mat-radio-button value="2">x<sup>3</sup>-x+4</mat-radio-button>
+    <mat-radio-button value="2" (click)="onRadioChange(2)">x<sup>3</sup>-x+4</mat-radio-button>
     <br>
-    <mat-radio-button value="3">5log<sub>10</sub>(x+2)-3</mat-radio-button>
+    <mat-radio-button value="3" (click)="onRadioChange(3)">5log<sub>10</sub>(x+2)-3</mat-radio-button>
   </mat-radio-group>
 </div>
 <div>
@@ -48,6 +48,6 @@
       <div class="alert">inaccuracy is required and <=0.1</div>
     </div>
   </div>
-  <p-button type="submit" [disabled]="equationsFrom.invalid">Send</p-button>
+  <p-button type="submit" [disabled]="equationsFrom.invalid">попытаться найти корень</p-button>
 </div>
 </form>

@@ -1,10 +1,19 @@
-.contic-app{
-  display: flex;
-  flex-direction: row;
-  justify-content:space-between;
-}
+
 .math{
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap:  wrap;
+  flex-direction: row;
+}
+.graph{
+  display: flex;
+  justify-content: center;
+
+}
+.forms{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap:  wrap;
 
 }

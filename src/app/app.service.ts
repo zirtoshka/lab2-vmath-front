@@ -7,7 +7,7 @@ import {Response} from "./response";
 })
 export class AppService {
 
-  private readonly baseUrl = `http://localhost:8080/app-controller/equation`;
+  private readonly baseUrl = `http://localhost:8080/app-controller`;
   // private httpClient = inject(HttpClient);
   constructor(private httpClient: HttpClient) {}
 
@@ -25,7 +25,23 @@ export class AppService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
-      .post<Response>(`${this.baseUrl}`, JSON.stringify(formData), { headers });
+      .post<Response>(`${this.baseUrl}/equation`, JSON.stringify(formData), { headers });
+  }
+
+  systemMake(system:number, method:number, initialApproximationByX:number, initialApproximationByY:number, inaccuracy:number){
+    console.log("appservice")
+    const formData = {
+      system: system,
+      method: method,
+      initialApproximationByX: initialApproximationByX,
+      initialApproximationByY:initialApproximationByY,
+      inaccuracy: inaccuracy
+    };
+    console.log(formData);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.httpClient
+      .post<Response>(`${this.baseUrl}/system`, JSON.stringify(formData), { headers });
   }
 
 }

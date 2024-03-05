@@ -16,7 +16,7 @@ export class GraphComponent {
   lines: GeometryElement[] = [];
 
   ngOnInit() {
-    this.board = this.boardInit();
+    this.board = this.boardInit(-5, 5, 5, -5);
 
 
     // return -2.7 * Math.pow(x, 3) - 1.48 * Math.pow(x, 2) + 19.23 * x + 6.35;
@@ -28,7 +28,8 @@ export class GraphComponent {
     this.lines.push(this.board.create('functiongraph', [function (x: number) {
       return -2.7 * x * x * x - 1.48 * x * x + 19.23 * x + 6.35;
     }, -10, 10], {
-      strokeColor: '#002aff' // Красный цвет для линии графика
+      strokeColor: '#6600ff',
+      strokeWidth: 2// Красный цвет для линии графика
     }));
   }
 
@@ -36,16 +37,57 @@ export class GraphComponent {
     this.lines.push(this.board.create('functiongraph', [function (x: number) {
       return x * x * x - x + 4;
     }, -10, 10], {
-      strokeColor: '#002aff' // Красный цвет для линии графика
+      strokeColor: '#c500fd',
+      strokeWidth: 2// Красный цвет для линии графика
     }));
   }
 
   draw3fun() {
     this.lines.push(this.board.create('functiongraph', [function (x: number) {
-      return 5*Math.log10(x+2)-3;
+      return 5 * Math.log10(x + 2) - 3;
     }, -10, 10], {
-      strokeColor: '#002aff' // Красный цвет для линии графика
+      strokeColor: '#002aff',
+      strokeWidth: 2// Красный цвет для линии графика
     }));
+  }
+
+  draw4fun() {
+
+    // Функция для первого уравнения системы
+    const equation1 = function (x: number) {
+      return (Math.atan(x*x)-0.3)/x;
+    };
+    const equation2 = function (x: number) {
+      return (10*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
+    };
+    const equation3 = function (x: number) {
+      return (20*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
+    };
+    const equation4 = function (x: number) {
+      return (-10*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
+    };
+    const equation5 = function (x: number) {
+      return (-20*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
+    };
+    // Функция для второго уравнения системы
+    const equation20 = function (x: number) {
+      return Math.pow((1 - 0.9 * x * x) / 2, 0.5);
+    };
+    const equation21 = function (x: number) {
+      return -Math.pow((1 - 0.9 * x * x) / 2, 0.5);
+    };
+
+    // Рисуем графики функций
+    this.lines.push(this.board.create('functiongraph', [equation2, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation3, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation4, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation5, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
+
+    this.lines.push(this.board.create('functiongraph', [equation1, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation20, -10, 10], {strokeColor: '#ff0000', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation21, -10, 10], {strokeColor: '#ff0000', strokeWidth: 2}));
+
+
   }
 
   clearBoard() {
@@ -58,20 +100,27 @@ export class GraphComponent {
   drawline(event: any) {
     // alert(event)
     this.clearBoard();
+    // if (event != 4) {
+    //   this.boardInit(-5, 25, 5, -20);
+    // } else {
+    //   alert(11);
+    //   this.boardInit(-5, 5, 5, -5);
+    // }
     if (event == 1) {
       this.draw1fun();
-
     } else if (event == 2) {
       this.draw2fun();
     } else if (event == 3) {
       this.draw3fun();
+    } else if (event == 4) {
+      this.draw4fun();
     }
   }
 
 
-  boardInit() {
+  boardInit(a: number, b: number, c: number, d: number) {
     return JXG.JSXGraph.initBoard('jxgbox', {
-      boundingbox: [-5, 25, 5, -20],
+      boundingbox: [a, b, c, d],
       grid: true,
       showCopyright: false,
       axis: true,
