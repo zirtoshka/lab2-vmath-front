@@ -59,7 +59,7 @@ export class SystemComponent {
       this.systemFrom.value.initialApproximationByY,
       this.systemFrom.value.inaccuracy).subscribe({
         next: (response) => {
-          alert("корень = " + response.uknownX + "   значение функции = " + response.fun);
+          alert("x = " + response.x + "   y = " + response.y);
           console.log(response);
         },
         error: (error) => {

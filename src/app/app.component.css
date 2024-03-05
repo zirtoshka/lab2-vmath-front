@@ -5,6 +5,10 @@
   flex-wrap:  wrap;
   flex-direction: row;
 }
+.sys{
+  /*flex-grow: 1;*/
+  width: 500px
+}
 .graph{
   display: flex;
   justify-content: center;
@@ -17,3 +21,4 @@
   flex-wrap:  wrap;
 
 }
+

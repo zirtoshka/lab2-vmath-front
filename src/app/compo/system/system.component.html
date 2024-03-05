@@ -1,49 +1,58 @@
-<p>system works!</p>
 <form [formGroup]="systemFrom" novalidate (ngSubmit)="submit()">
 
   <div class="systems">
     <div>
-      <mat-radio-group formControlName="system" aria-label="выберите уравнение" >
-        <mat-radio-button value="4" (click)="onRadioChange(4)">/tg(xy+0.3)=x<sup>2</sup>  <br> \0.9x<sup>2</sup>+2y<sup>2</sup>=1 </mat-radio-button>
+      <mat-radio-group formControlName="system" aria-label="выберите уравнение">
+        <mat-radio-button value="4" (click)="onRadioChange(4)">/tg(xy+0.3)=x<sup>2</sup> <br>
+          \0.9x<sup>2</sup>+2y<sup>2</sup>=1
+        </mat-radio-button>
         <br>
-        <mat-radio-button value="5" (click)="onRadioChange(5)">asdasdad</mat-radio-button>
+        <mat-radio-button value="5" (click)="onRadioChange(5)">/0.1x<sup>2</sup>+x+0.2y<sup>2</sup>-0.3=0 <br>
+        \0.2x<sup>2</sup>+y+0.1xy-0.7=0
+        </mat-radio-button>
 
       </mat-radio-group>
     </div>
     <div>
-      <mat-radio-group formControlName="method" aria-label="выберите метод решения уравнения" >
+      <mat-radio-group formControlName="method" aria-label="выберите метод решения уравнения">
         <mat-radio-button value="1">Метод простой итерации</mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
   <div>
+    <br>
     <div>
       <p-inputGroupAddon>
         начальное приближение по оси х
       </p-inputGroupAddon>
-      <input name="initialApproximationByX" type="text" pInputText formControlName="initialApproximationByX"  />
-      <div *ngIf="systemFrom.controls['initialApproximationByX'].invalid && systemFrom.controls['initialApproximationByX'].touched">
+      <input name="initialApproximationByX" type="text" pInputText formControlName="initialApproximationByX"/>
+      <div
+        *ngIf="systemFrom.controls['initialApproximationByX'].invalid && systemFrom.controls['initialApproximationByX'].touched">
         <div class="alert">начальное приближение по оси х is required</div>
       </div>
     </div>
+    <br>
     <div>
       <p-inputGroupAddon>
         начальное приближение по оси y
       </p-inputGroupAddon>
-      <input type="text" pInputText name="initialApproximationByY" formControlName="initialApproximationByY"  />
-      <div *ngIf="systemFrom.controls['initialApproximationByY'].invalid && systemFrom.controls['initialApproximationByY'].touched">
+      <input type="text" pInputText name="initialApproximationByY" formControlName="initialApproximationByY"/>
+      <div
+        *ngIf="systemFrom.controls['initialApproximationByY'].invalid && systemFrom.controls['initialApproximationByY'].touched">
         <div class="alert">начальное приближение по оси y is required</div>
       </div>
     </div>
+    <br>
     <div>
       <p-inputGroupAddon>
         погрешность
       </p-inputGroupAddon>
-      <input type="text" pInputText name="inaccuracy" formControlName="inaccuracy"  />
+      <input type="text" pInputText name="inaccuracy" formControlName="inaccuracy"/>
       <div *ngIf="systemFrom.controls['inaccuracy'].invalid && systemFrom.controls['inaccuracy'].touched">
         <div class="alert">inaccuracy is required and <=0.1</div>
       </div>
     </div>
+    <br>
     <p-button type="submit" [disabled]="systemFrom.invalid">попытаться найти корень</p-button>
   </div>
 </form>

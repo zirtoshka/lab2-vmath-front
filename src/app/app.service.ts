@@ -1,6 +1,7 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Response} from "./response";
+import {ResponseEq} from "./response-eq";
+import {ResponseSys} from "./response-sys";
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,13 @@ export class AppService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
-      .post<Response>(`${this.baseUrl}/equation`, JSON.stringify(formData), { headers });
+      .post<ResponseEq>(`${this.baseUrl}/equation`, JSON.stringify(formData), { headers });
   }
 
   systemMake(system:number, method:number, initialApproximationByX:number, initialApproximationByY:number, inaccuracy:number){
-    console.log("appservice")
+    console.log("appservice1")
     const formData = {
-      system: system,
+      system: system-3,
       method: method,
       initialApproximationByX: initialApproximationByX,
       initialApproximationByY:initialApproximationByY,
@@ -41,7 +42,7 @@ export class AppService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
-      .post<Response>(`${this.baseUrl}/system`, JSON.stringify(formData), { headers });
+      .post<ResponseSys>(`${this.baseUrl}/system`, JSON.stringify(formData), { headers });
   }
 
 }

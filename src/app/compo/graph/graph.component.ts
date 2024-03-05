@@ -90,6 +90,28 @@ export class GraphComponent {
 
   }
 
+  draw5fun() {
+
+    // Функция для первого уравнения системы
+    const equation1 = function (x: number) {
+      return (0.7-0.2*x*x)/(1+0.1*x);
+    };
+    const equation21 = function (x: number) {
+      return Math.pow((0.3-0.1*x*x-x)/0.2,0.5)
+    };
+    const equation22 = function (x: number) {
+      return -Math.pow((0.3-0.1*x*x-x)/0.2,0.5)
+    };
+
+
+
+    this.lines.push(this.board.create('functiongraph', [equation1, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation21, -10, 5], {strokeColor: '#fc1437', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation22, -10, 5], {strokeColor: '#fc1437', strokeWidth: 2}));
+
+
+  }
+
   clearBoard() {
     for (const object of this.lines) {
       this.board.removeObject(object);
@@ -114,6 +136,8 @@ export class GraphComponent {
       this.draw3fun();
     } else if (event == 4) {
       this.draw4fun();
+    }else if(event==5){
+      this.draw5fun();
     }
   }
 

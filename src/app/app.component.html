@@ -8,7 +8,8 @@
     <app-equation #equationComponent (choseEvent)="graphComponent.drawline($event)"></app-equation>
   <app-graph #graphComponent></app-graph>
 
-  <app-system (choseEvent)="graphComponent.drawline($event)"></app-system>
+  <app-system (choseEvent)="graphComponent.drawline($event)" class="sys"></app-system>
+  <app-filik (choseEvent)="graphComponent.drawline($event)"></app-filik>
 <!--  </div>-->
 </div>
 <!--</div>-->
