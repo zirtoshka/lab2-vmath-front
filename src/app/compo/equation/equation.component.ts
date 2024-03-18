@@ -66,8 +66,8 @@ export class EquationComponent {
     this.appService.equationMake(this.equationsFrom.value.func, this.equationsFrom.value.method,
       this.equationsFrom.value.firstBoundaryOfInterval, this.equationsFrom.value.secondBoundaryOfInterval, this.equationsFrom.value.inaccuracy).subscribe({
       next: (response) => {
-        alert("корень = "+ response.uknownX+ "   значение функции = "+ response.fun);
-        this.appService.dataUser="корень = "+ response.uknownX+ "   значение функции = "+ response.fun;
+        alert("корень = "+ response.uknownX+ "   значение функции = "+ response.fun+ " количество итераций: " + response.numberOfIterations);
+        this.appService.dataUser="корень = "+ response.uknownX+ "   значение функции = "+ response.fun + " количество итераций: " + response.numberOfIterations;
         console.log(response);
       },
       error: (error) => {

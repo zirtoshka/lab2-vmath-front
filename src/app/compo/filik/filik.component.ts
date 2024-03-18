@@ -33,8 +33,8 @@ export class FilikComponent {
             this.onRadioChange(json.func);
             this.appService.equationMake(json.func, json.method, json.firstBoundaryOfInterval, json.secondBoundaryOfInterval, json.inaccuracy).subscribe({
               next: (response) => {
-                alert("корень = " + response.uknownX + "   значение функции = " + response.fun);
-                this.appService.dataUser = "корень = " + response.uknownX + "   значение функции = " + response.fun;
+                this.appService.dataUser = "корень = " + response.uknownX + "  значение функции = " + response.fun + " количество итераций: " + response.numberOfIterations;
+                alert(this.appService.dataUser);
                 console.log(response);
               },
               error: (error) => {
@@ -52,8 +52,11 @@ export class FilikComponent {
             this.onRadioChange(parseInt(json.system) + 3);
             this.appService.systemMake(parseInt(json.system) + 3, json.method, json.initialApproximationByX, json.initialApproximationByY, json.inaccuracy).subscribe({
                 next: (response) => {
-                  alert("x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations);
-                  this.appService.dataUser = "x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations;
+                  this.appService.dataUser = "x = " + response.x + "\ny = " + response.y +
+                    "\nколичество итераций: " + response.numberOfIterations +
+                    "\nвектор погрешностей x: " + response.errorVectorX +
+                    "\nвектор погрешностей y: " + response.errorVectorY ;
+                  alert(this.appService.dataUser);
                 },
                 error: (error) => {
                   if (error.status === 400) {

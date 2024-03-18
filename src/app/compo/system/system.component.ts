@@ -7,6 +7,8 @@ import {NgIf} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AppService} from "../../app.service";
+import _default from "chart.js/dist/core/core.interaction";
+import dataset = _default.modes.dataset;
 
 @Component({
   selector: 'app-system',
@@ -60,16 +62,18 @@ export class SystemComponent {
       this.systemFrom.value.initialApproximationByY,
       this.systemFrom.value.inaccuracy).subscribe({
         next: (response) => {
-          alert("x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations);
-          this.appService.dataUser = "x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations;
-          console.log(response);
+          this.appService.dataUser = "x = " + response.x + "\ny = " + response.y +
+            "\nколичество итераций: " + response.numberOfIterations +
+            "\nвектор погрешностей x: " + response.errorVectorX +
+            "\nвектор погрешностей y: " + response.errorVectorY ;
+          alert(this.appService.dataUser);
         },
         error: (error) => {
           if (error.status === 400) {
-            this.appService.dataUser=error.error;
+            this.appService.dataUser = error.error;
             alert(error.error);
           } else {
-            this.appService.dataUser=error;
+            this.appService.dataUser = error;
             console.error(error);
           }
         }
