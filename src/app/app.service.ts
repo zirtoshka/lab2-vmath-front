@@ -9,6 +9,8 @@ import {ResponseSys} from "./response-sys";
 export class AppService {
 
   private readonly baseUrl = `http://localhost:8080/app-controller`;
+  dataUser = 'Zero zero one one one zero zero one one\nCryin\' zeros and I\'m\nZero zero one one one zero zero one one\nCryin\' zeros and I\'m';
+
   // private httpClient = inject(HttpClient);
   constructor(private httpClient: HttpClient) {}
 

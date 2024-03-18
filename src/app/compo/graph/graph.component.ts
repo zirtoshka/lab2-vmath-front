@@ -55,37 +55,31 @@ export class GraphComponent {
 
     // Функция для первого уравнения системы
     const equation1 = function (x: number) {
-      return (Math.atan(x*x)-0.3)/x;
+      return Math.sin(x-0.6)-1.6;
     };
     const equation2 = function (x: number) {
-      return (10*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
+      return Math.acos(3*x-0.9);
     };
+
     const equation3 = function (x: number) {
-      return (20*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
+      return 2*Math.PI-Math.acos(3*x-0.9);
     };
     const equation4 = function (x: number) {
-      return (-10*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
+      return -2*Math.PI+Math.acos(3*x-0.9);
     };
     const equation5 = function (x: number) {
-      return (-20*Math.PI+10*Math.atan(x*x)-0.3)/(10*x);
-    };
-    // Функция для второго уравнения системы
-    const equation20 = function (x: number) {
-      return Math.pow((1 - 0.9 * x * x) / 2, 0.5);
-    };
-    const equation21 = function (x: number) {
-      return -Math.pow((1 - 0.9 * x * x) / 2, 0.5);
+      return -Math.acos(3*x-0.9);
     };
 
     // Рисуем графики функций
-    this.lines.push(this.board.create('functiongraph', [equation2, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
-    this.lines.push(this.board.create('functiongraph', [equation3, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
-    this.lines.push(this.board.create('functiongraph', [equation4, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
-    this.lines.push(this.board.create('functiongraph', [equation5, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation2, -1, 1], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation3, -1, 1], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation4, -1, 1], {strokeColor: '#1a5901', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation5, -1, 1], {strokeColor: '#1a5901', strokeWidth: 2}));
 
-    this.lines.push(this.board.create('functiongraph', [equation1, -10, 10], {strokeColor: '#1a5901', strokeWidth: 2}));
-    this.lines.push(this.board.create('functiongraph', [equation20, -10, 10], {strokeColor: '#ff0000', strokeWidth: 2}));
-    this.lines.push(this.board.create('functiongraph', [equation21, -10, 10], {strokeColor: '#ff0000', strokeWidth: 2}));
+    this.lines.push(this.board.create('functiongraph', [equation1, -10, 10], {strokeColor: '#f810c2', strokeWidth: 2}));
+    // this.lines.push(this.board.create('functiongraph', [equation20, -10, 10], {strokeColor: '#ff0000', strokeWidth: 2}));
+    // this.lines.push(this.board.create('functiongraph', [equation21, -10, 10], {strokeColor: '#ff0000', strokeWidth: 2}));
 
 
   }

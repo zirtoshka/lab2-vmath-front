@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output, ViewChild} from '@angular/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
@@ -40,6 +40,7 @@ export class EquationComponent {
   private appService = inject(AppService);
 
 
+
   constructor(private formBuilder: FormBuilder) {
     this.equationsFrom = formBuilder.group({
       "inaccuracy": ["0.1", [Validators.required,
@@ -61,17 +62,21 @@ export class EquationComponent {
   }
 
   submit() {
+    this.choseEvent.emit(this.equationsFrom.value.func);
     this.appService.equationMake(this.equationsFrom.value.func, this.equationsFrom.value.method,
       this.equationsFrom.value.firstBoundaryOfInterval, this.equationsFrom.value.secondBoundaryOfInterval, this.equationsFrom.value.inaccuracy).subscribe({
       next: (response) => {
         alert("корень = "+ response.uknownX+ "   значение функции = "+ response.fun);
+        this.appService.dataUser="корень = "+ response.uknownX+ "   значение функции = "+ response.fun;
         console.log(response);
       },
       error: (error) => {
         if (error.status === 400) {
           alert(error.error);
+          this.appService.dataUser=error.error;
         } else {
           console.error(error);
+          this.appService.dataUser=error;
         }      }
     });
   }

@@ -9,6 +9,7 @@ import {AppService} from "../../app.service";
   templateUrl: './filik.component.html',
   styleUrl: './filik.component.css'
 })
+
 export class FilikComponent {
   file: File | null = null;
   @Output() choseEvent = new EventEmitter<number>();
@@ -27,35 +28,40 @@ export class FilikComponent {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         try {
-           json = JSON.parse(e.target.result);
+          json = JSON.parse("{" + e.target.result + "}");
           if (json.func) {
             this.onRadioChange(json.func);
             this.appService.equationMake(json.func, json.method, json.firstBoundaryOfInterval, json.secondBoundaryOfInterval, json.inaccuracy).subscribe({
               next: (response) => {
                 alert("корень = " + response.uknownX + "   значение функции = " + response.fun);
+                this.appService.dataUser = "корень = " + response.uknownX + "   значение функции = " + response.fun;
                 console.log(response);
               },
               error: (error) => {
                 if (error.status === 400) {
-                  alert(error.error.message);
+                  alert(error.error);
+                  this.appService.dataUser = error.error;
                 } else {
                   console.error(error);
+                  this.appService.dataUser = error;
                 }
               }
             });
 
           } else {
             this.onRadioChange(parseInt(json.system) + 3);
-            this.appService.systemMake(parseInt(json.system)+3,json.method, json.initialApproximationByX, json.initialApproximationByY,json.inaccuracy).subscribe({
+            this.appService.systemMake(parseInt(json.system) + 3, json.method, json.initialApproximationByX, json.initialApproximationByY, json.inaccuracy).subscribe({
                 next: (response) => {
-                  alert("x = " + response.x + "   y = " + response.y);
-                  console.log(response);
+                  alert("x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations);
+                  this.appService.dataUser = "x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations;
                 },
                 error: (error) => {
                   if (error.status === 400) {
-                    alert(error);
+                    this.appService.dataUser = error.error;
+                    alert(error.error);
                   } else {
                     console.error(error);
+                    this.appService.dataUser = error;
                   }
                 }
               }
@@ -66,8 +72,6 @@ export class FilikComponent {
         }
       };
       reader.readAsText(this.file);
-
-      console.log(3242334232234)
     }
   }
 
@@ -75,5 +79,16 @@ export class FilikComponent {
   onRadioChange(event: number) {
     this.choseEvent.emit(event)
 
+  }
+
+
+  downloadFile() {
+    const blob = new Blob([this.appService.dataUser], {type: 'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'res.txt'; // Имя файла
+    link.click();
+    URL.revokeObjectURL(url);
   }
 }

@@ -53,19 +53,23 @@ export class SystemComponent {
 
 
   submit() {
+    this.choseEvent.emit(this.systemFrom.value.system);
     this.appService.systemMake(this.systemFrom.value.system,
       this.systemFrom.value.method,
       this.systemFrom.value.initialApproximationByX,
       this.systemFrom.value.initialApproximationByY,
       this.systemFrom.value.inaccuracy).subscribe({
         next: (response) => {
-          alert("x = " + response.x + "   y = " + response.y);
+          alert("x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations);
+          this.appService.dataUser = "x = " + response.x + "   y = " + response.y + " количество итераций: " + response.numberOfIterations;
           console.log(response);
         },
         error: (error) => {
           if (error.status === 400) {
+            this.appService.dataUser=error.error;
             alert(error.error);
           } else {
+            this.appService.dataUser=error;
             console.error(error);
           }
         }

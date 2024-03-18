@@ -6,10 +6,29 @@
 <!--  </div>-->
 <!--  <div class="forms">-->
     <app-equation #equationComponent (choseEvent)="graphComponent.drawline($event)"></app-equation>
+
   <app-graph #graphComponent></app-graph>
 
   <app-system (choseEvent)="graphComponent.drawline($event)" class="sys"></app-system>
+  <div>
+  <h4>Пример файла с данными для решения уравнения</h4>
+  <p>
+    "func":"3",<br>
+    "method":"3",<br>
+    "firstBoundaryOfInterval":"-1",<br>
+    "secondBoundaryOfInterval":"10",<br>
+    "inaccuracy":"0.001"
+  </p>
+  </div>
   <app-filik (choseEvent)="graphComponent.drawline($event)"></app-filik>
+  <div>
+    <h4>Пример файла с данными для решения системы</h4>
+    <p>"system": 2,<br>
+      "method":"1",<br>
+      "initialApproximationByX":"0.1",<br>
+      "initialApproximationByY":"1",<br>
+      "inaccuracy":"0.001"</p>
+  </div>
 <!--  </div>-->
 </div>
 <!--</div>-->
